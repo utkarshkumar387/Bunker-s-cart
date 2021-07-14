@@ -1,0 +1,39 @@
+
+/* .splashImage_img{
+    width: 100%;
+} */
+.splashImage_heading{
+    font-size: 48px;
+    width: 60%;
+    font-weight: 900;
+    color: #fff;
+}
+.splashImage_quote{
+    color: rgb(223, 223, 223);
+    font-size: 18px;
+    margin-top: 20px;
+    /* text-align: center; */
+}
+.splashImage_brandName{
+    color: #0BDA51;
+}
+.splashImage{
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../images/fresh.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.splashImage_outer{
+    /* border: 1px solid green; */
+    /* width: 98%; */
+    padding-left: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+.splashImage_inner{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
