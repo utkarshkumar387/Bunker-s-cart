@@ -34,6 +34,7 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
     }, [])
 
     const next = (data) => {
+        console.log('data from address from', data);
         setshippingData(data);
 
         nextStep();

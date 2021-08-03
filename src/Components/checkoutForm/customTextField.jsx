@@ -12,9 +12,10 @@ function CustomTextField({ name, label, required }) {
                 defaultValue=""
                 render={({ field }) => (
                     <TextField
+                        {...field}
                         fullWidth
                         label={label}
-                        required={required}
+                        required
                     />
                 )}
             />

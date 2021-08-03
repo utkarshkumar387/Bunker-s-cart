@@ -14,6 +14,7 @@ function AddressForm({ next }) {
     // const [shippingOption, setShippingOption] = useState('');
 
     const methods = useForm();
+    console.log('methods is', methods);
 
 
     const subdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({ id: code, label: name }));
@@ -26,10 +27,10 @@ function AddressForm({ next }) {
 
 
     useEffect(() => {
-        let isMounted = true;
-        if (isMounted) fetchShippingSubdivisions();
-
-        return () => { isMounted = false };
+        fetchShippingSubdivisions();
+        return () => {
+            setShippingSubdivisions([]);
+        };
     }, [])
 
 
@@ -39,12 +40,12 @@ function AddressForm({ next }) {
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingSubdivision }))}>
                     <Grid container spacing={3}>
-                        <CustomTextField required name='firstName' label='First name' />
-                        <CustomTextField required name='lastName' label='Last name' />
-                        <CustomTextField required name='Address1' label='Address' />
-                        <CustomTextField required name='email' label='Email' />
-                        <CustomTextField required name='city' label='City' />
-                        <CustomTextField required name='zip' label='Zip code' />
+                        <CustomTextField name='firstName' label='First name' />
+                        <CustomTextField name='lastName' label='Last name' />
+                        <CustomTextField name='Address1' label='Address' />
+                        <CustomTextField name='email' label='Email' />
+                        <CustomTextField name='city' label='City' />
+                        <CustomTextField name='zip' label='Zip code' />
                         <Grid item xs={12} sm={6}>
                             <Typography><b>Only for India</b></Typography>
                         </Grid>
@@ -61,7 +62,7 @@ function AddressForm({ next }) {
                     </Grid>
                     <br />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Button component={Link} to="/cart" variant="ooutlined">Back to cart</Button>
+                        <Button component={Link} to="/cart" variant="outlined">Back to cart</Button>
                         <Button type="submit" variant="contained" color="primary">Next</Button>
                     </div>
                 </form>

@@ -7,7 +7,7 @@ import Review from './review';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 function PaymentForm({ checkoutToken, shippingData, backStep, onCaptureCheckout, nextStep }) {
-    console.log(backStep);
+    console.log(shippingData);
 
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
@@ -24,28 +24,37 @@ function PaymentForm({ checkoutToken, shippingData, backStep, onCaptureCheckout,
             const orderData = {
                 line_items: checkoutToken.live.line_items,
                 customer: {
-                    firstname: shippingData.firstname,
-                    lastname: shippingData.lastname,
+                    firstname: shippingData.firstName,
+                    lastname: shippingData.lastName,
                     email: shippingData.email
                 },
                 shipping: {
                     name: 'Primary',
-                    street: shippingData.address1,
+                    street: shippingData.Address1,
+                    town_city: shippingData.city,
+                    country_state: shippingData.shippingSubdivision,
+                    postal_zip_code: shippingData.zip,
+                    country: 'IN'
+                },
+                fulfillment: {
+                    shipping_method: 'Domestic'
+                },
+                billing: {
+                    name: 'Primary',
+                    street: shippingData.Address1,
                     town_city: shippingData.city,
                     country_state: shippingData.shippingSubdivision,
                     postal_zip_code: shippingData.zip,
                     country: 'India'
                 },
-                fulfillment: { shipping_method: shippingData.shippingOption },
                 payment: {
                     gateway: 'stripe',
                     stripe: {
-                        payment_method_id: paymentMethod.id
+                        token: paymentMethod.id
                     }
                 }
             }
             onCaptureCheckout(checkoutToken.id, orderData);
-
             nextStep()
         }
     }
