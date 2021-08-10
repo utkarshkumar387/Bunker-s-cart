@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import makeStyles from './styles';
 import Header from './header/header'
 import CategoryCarousal from './categoriesCarousal/categoryCarousal';
@@ -12,19 +12,19 @@ function Products({ fruits, vegetables, spices, onAddToCart, onSnackbarHandleCli
             id: 1,
             items: fruits,
             title: 'Fruits',
-            description: 'Fruit is natures candy.'
+            description: 'Fruit is natures candy.',
         },
         {
             id: 2,
             items: vegetables,
             title: 'Vegitables',
-            description: 'Eating vegetables make you feel good.'
+            description: 'Eating vegetables make you feel good.',
         },
         {
             id: 3,
             items: spices,
             title: 'Spices',
-            description: 'Variety is the spice of love.'
+            description: 'Variety is the spice of love.',
         },
         // {
         //     items: dairy,

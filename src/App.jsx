@@ -128,7 +128,7 @@ function App() {
                 <Switch>
                     <Route exact path="/">
                         {/* <Auth onOpen={open} /> */}
-                        <Chatbot />
+                        {/* <Chatbot /> */}
                         <Splash totalItems={cart.total_items} />
                         <CategoriesList />
                         <Products fruits={fruits} setProductName={setProductName} onSnackbarHandleClick={snackbarHandleClick} vegetables={vegetables} spices={spices} onAddToCart={handleAddToCart} />

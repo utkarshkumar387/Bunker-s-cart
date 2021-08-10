@@ -33,13 +33,6 @@ function Splash({ totalItems, onHandleOpen }) {
                 <div className="splashImage_inner">
                     <p className="splashImage_heading">Welcome to <span className="splashImage_brandName">Bunker's Cart</span></p>
                     <p className="splashImage_quote">I like my freedom. I like to do my own grocery shopping.</p>
-                    <Box my={4} className="splashImage_button">
-                        <ThemeProvider theme={theme}>
-                            <BootstrapButton variant="outlined" color="primary">
-                                SHOP NOW
-                            </BootstrapButton>
-                        </ThemeProvider>
-                    </Box>
                 </div>
             </div>
         </div>
