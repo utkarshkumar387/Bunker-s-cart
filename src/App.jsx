@@ -75,17 +75,8 @@ function App() {
         setCart(newCart);
     }
 
-    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-        console.log(checkoutTokenId, newOrder);
-        try {
-            const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
-            console.log('order done');
-            setOrder(incomingOrder);
-            refreshCart();
-        } catch (error) {
-            console.log(error);
-            setErrorMessage(error.data.error.message);
-        }
+    const handleCaptureCheckout = () => {
+        refreshCart();
     }
 
     const allFruits = async () => {
@@ -148,6 +139,7 @@ function App() {
                         <Items />
                     </Route>
                     <Route exact path="/checkout">
+                        <Navbar totalItems={cart.total_items} />
                         <Checkout
                             cart={cart}
                             order={order}

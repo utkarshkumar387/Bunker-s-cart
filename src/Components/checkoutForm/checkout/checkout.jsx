@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core'
+import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline } from '@material-ui/core'
 import useStyles from './style'
 import AddressForm from '../addressForm';
 import PaymentForm from '../paymentForm';
@@ -15,6 +15,7 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
     const [activeStep, setActiveStep] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState(null)
     const [shippingData, setshippingData] = useState({});
+    const [isFinished, setIsFinished] = useState(false);
 
     //creating checkout token
     const getToken = async () => {
@@ -40,6 +41,12 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
         nextStep();
     }
 
+    const timeout = () => {
+        setTimeout(() => {
+            setIsFinished(true);
+        }, 3000)
+    }
+
     if (!checkoutToken) return 'Loading';
 
     const Confirmation = () => order.customer ? (
@@ -51,6 +58,15 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
             </div>
             <br />
             <Button component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
+        </>
+    ) : isFinished ? (
+        <>
+            <div>
+                <Typography variant="h5">Thank you for your purchase</Typography>
+                <Divider className={classes.divider} />
+            </div>
+            <br />
+            <Button component={Link} to="/" variant="outlined" type="button">Back to home</Button>
         </>
     ) : (
         <div className={classes.spinner}>
@@ -75,9 +91,12 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
             checkoutToken={checkoutToken}
             backStep={backStep}
             nextStep={nextStep}
-            onCaptureCheckout={onCaptureCheckout} />
+            onCaptureCheckout={onCaptureCheckout}
+            timeout={timeout}
+        />
     return (
         <>
+            <CssBaseline />
             <div className={classes.toolbar} />
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
